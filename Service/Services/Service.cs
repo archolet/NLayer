@@ -4,6 +4,7 @@ using Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Repository.UnitOfWork;
+using Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,10 +53,10 @@ namespace Service.Services
         {
             var hasProduct = await _repository.GetByIdAsync(id);
 
-            //if (hasProduct == null)
-            //{
-            //    throw new NotFoundExcepiton($"{typeof(T).Name}({id}) not found");
-            //}
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}({id}) not found");
+            }
             return hasProduct;
         }
 
