@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.UnitOfWorks
 {
-    public interface IUnitOfWorks
+    public interface IUnitOfWork
     {
         Task CommitAsync(); //SaveChangesAsync
         void Commit(); // SaveChanges

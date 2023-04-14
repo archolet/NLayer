@@ -31,7 +31,7 @@ namespace Repository
             return await _dbSet.AnyAsync(predicate);
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> GetAll()
         {
            return _dbSet.AsNoTracking().AsQueryable();
             //asnotracking çekmiş olduğu dataları memorye almasın 10000 data çekersen hepsini anlık izler. sonuçta getall yapıyorsun.
