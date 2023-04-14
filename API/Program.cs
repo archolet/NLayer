@@ -3,6 +3,7 @@ using Core.Services;
 using Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Repository;
+using Repository.Repositories;
 using Repository.UnitOfWork;
 using Service.Mapping;
 using Service.Services;
@@ -22,6 +23,13 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 builder.Services.AddDbContext<AppDbContext>(x =>

@@ -2,15 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Repository
+namespace Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         // readonly ya tanımlanırken değer atayabilirsin yada constrocturda değer atayabilirsin başka yerde değer atayamazsın
-        protected readonly AppDbContext _appDbContext; 
+        protected readonly AppDbContext _appDbContext;
         private readonly DbSet<T> _dbSet;
 
-        public GenericRepository(AppDbContext appDbContext )
+        public GenericRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
             _dbSet = appDbContext.Set<T>();
@@ -33,7 +33,7 @@ namespace Repository
 
         public IQueryable<T> GetAll()
         {
-           return _dbSet.AsNoTracking().AsQueryable();
+            return _dbSet.AsNoTracking().AsQueryable();
             //asnotracking çekmiş olduğu dataları memorye almasın 10000 data çekersen hepsini anlık izler. sonuçta getall yapıyorsun.
         }
 
@@ -59,7 +59,7 @@ namespace Repository
 
         public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
         {
-           return _dbSet.Where(predicate);
+            return _dbSet.Where(predicate);
         }
     }
 }
